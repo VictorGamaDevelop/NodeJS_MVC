@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Agricultores</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #00796b;
+        color: #fff;
+        text-align: center;
+      }
+
+      h1 {
+        margin-top: 20px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #fff;
+        text-align: left;
+      }
+
+      th {
+        background-color: #b2dfdb;
+        color: #212121;
+      }
+
+      a {
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #b2dfdb;
+        color: #212121;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      .edit-icon::before {
+        content: "\f044";
+        font-family: "Font Awesome 6 Free";
+        margin-right: 5px;
+      }
+
+      .delete-icon::before {
+        content: "\f2ed";
+        font-family: "Font Awesome 6 Free";
+        margin-right: 5px;
+      }
+
+      a .sr-only {
+        display: none;
+      }
+
+      .add-farmer-button {
+        display: block;
+        width: 200px;
+        margin-top: 20px;
+        background-color: #b2dfdb;
+        color: #212121;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+      }
+
+      .table-wrapper {
+        max-height: 550px;
+        overflow-y: auto;
+      }
+    </style>
+
+    <script>
+      function confirmDelete(farmerId) {
+        if (confirm("Tem certeza de que deseja excluir este agricultor?")) {
+          window.location.href = `/delete/${farmerId}`;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Lista de Agricultores</h1>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Razão Social</th>
+            <th>Nome Fantasia</th>
+            <th>CNPJ/CPF</th>
+            <th>Celular</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% farmers.forEach(farmer => { %>
+          <tr>
+            <td><%= farmer.corporateReason %></td>
+            <td><%= farmer.fantasyName %></td>
+            <td><%= farmer.cpfCnpj %></td>
+            <td><%= farmer.numberCell %></td>
+            <td><%= farmer.city %></td>
+            <td><%= farmer.state %></td>
+            <td>
+              <a href="/farmerEdit/<%= farmer.id %>" class="edit-icon">
+                <span class="sr-only">Editar</span>
+              </a>
+              <a
+                href="#"
+                onclick="confirmDelete(<%= farmer.id %>);"
+                class="delete-icon"
+              >
+                <span class="sr-only">Excluir</span>
+              </a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <a href="/farmerAdd" class="add-farmer-button">
+      <span>Adicionar Agricultor</span>
+    </a>
+  </body>
+</html>

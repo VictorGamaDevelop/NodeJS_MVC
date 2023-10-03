@@ -1,0 +1,61 @@
+const FarmerService = require('../services/farmerServices');
+const service = new FarmerService();
+
+module.exports = {
+  async getAll(req, res, next) {
+    try {
+      const farmers = await service.getAll();
+      res.status(200).render('farmerList', { farmers });
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async getById(req, res, next) {
+    try {
+      const farmer = await service.getById(req.params.id)
+      if (farmer) {
+        res.status(200).render('farmerEdit', { farmer });
+      } else {
+        res.status(404).send('Not Found');
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async create(req, res, next) {
+    try {
+      const farmer = await service.create(req.body)
+      res.status(201).send('<script>window.location.href = "/";</script>');
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async update(req, res, next) {
+    try {
+      const farmer = await service.update(req.params.id, req.body)
+      if (farmer) {
+        res.status(200).send('<script>window.location.href = "/";</script>');
+      } else {
+        res.status(404).send('Not Found');
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async delete(req, res, next) {
+    try {
+      const farmer = await service.delete(req.params.id)
+      if (farmer) {
+        res.status(200).send('<script>window.location.href = "/";</script>');
+      } else {
+        res.status(404).send('Not Found');
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+}

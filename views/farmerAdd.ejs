@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Agricultor</title>
+    <style>
+        body {
+            background-color: #00796B;
+            color: #fff;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 70px;
+        }
+
+        form {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #B2DFDB;
+            border-radius: 10px;
+        }
+
+        label, input {
+            display: block;
+            margin-bottom: 10px;
+            color: #212121;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            color: black;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            background-color: #009688;
+            color: #212121;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input:invalid, select:invalid {
+        border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulário de Agricultor</h1>
+    <form action="/create" method="POST">
+        <label for="corporateReason">Razão Social:</label>
+        <input type="text" id="corporateReason" name="corporateReason" required>
+
+        <label for="fantasyName">Nome Fantasia:</label>
+        <input type="text" id="fantasyName" name="fantasyName" required>
+
+        <label for="cpfCnpj">CNPJ/CPF:</label>
+        <input type="text" id="cpfCnpj" name="cpfCnpj" required>
+
+        <label for="numberCell">Celular:</label>
+        <input type="text" id="numberCell" name="numberCell">
+
+        <label for="city">Cidade:</label>
+        <input type="text" id="city" name="city" required>
+
+        <label for="state">Estado:</label>
+        <input type="text" id="state" name="state" pattern=".{2}" required>
+
+        <input type="submit" value="Adicionar Agricultor">
+    </form>
+</body>
+</html>
