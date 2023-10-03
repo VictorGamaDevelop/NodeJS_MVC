@@ -1,0 +1,23 @@
+# Arquivos de sistema e caches
+.DS_Store
+Thumbs.db
+
+# Pasta node_modules
+node_modules/
+
+# Logs e arquivos gerados durante a execução
+logs/
+*.log
+
+# Pasta de build (por exemplo, se você estiver construindo um aplicativo da web)
+/build/
+/dist/
+/out/
+
+# Arquivos de dependência específicos (se você estiver usando Yarn)
+.yarn/
+.yarnrc
+.yarn-integrity
+
+# Dependências específicas do npm (se você estiver usando npm)
+package-lock.json
